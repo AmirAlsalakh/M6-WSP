@@ -3,7 +3,7 @@ include('egytalk/inc/dbFunctions.php');
 
 class UserAuth
 {
-    public function login($uname, $password)
+    public function login($username, $password)
     {
         if (isset($_POST['password'], $_POST['username'])) {
             $username = filter_input(INPUT_POST, 'username', FILTER_UNSAFE_RAW);
