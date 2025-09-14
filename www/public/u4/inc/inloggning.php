@@ -7,7 +7,7 @@ if (!empty($_POST)) {
     $password = $_POST['password'] ?? "";
 
     $auth = new UserAuth();
-    $user = $auth->login($uname, $password);
+    $user = $auth->login($username, $password);
 
     if ($username) {
         header("Location: index.php");
