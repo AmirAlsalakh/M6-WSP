@@ -12,14 +12,13 @@ function dbConnect()
     return $db;
 }
 
-function postAll($db,$sqlkod,$submit)
+function postAll($db,$sqlkod,$city)
 {
     $stmt = $db->prepare($sqlkod);
-    $stmt->bindValue(":s", "$submit%", PDO::PARAM_STR);
+    $stmt->bindValue(":s", "$city%", PDO::PARAM_STR);
     $stmt->execute();
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    header('Content-Type: text/html; charset=utf-8');
 
     return $rows;
 }

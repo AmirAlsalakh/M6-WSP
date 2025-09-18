@@ -2,7 +2,7 @@
 include('egytalk/inc/dbFunctions.php');
 
 class User
-{
+{   
     function save()
     {
         if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']) && isset($_POST['password'])) {

@@ -11,23 +11,3 @@ function dbConnect()
 
     return $db;
 }
-
-function postAll($db, $sqlkod, $fname, $lname, $username, $password)
-{
-    $stmt = $db->prepare($sqlkod);
-    $stmt->bindValue(":fn", $fname, PDO::PARAM_STR);
-    $stmt->bindValue(":ln", $lname, PDO::PARAM_STR);
-    $stmt->bindValue(":user", $username, PDO::PARAM_STR);
-    $stmt->bindValue(":pwd", $password, PDO::PARAM_STR);
-
-
-
-    try {
-        $stmt->execute();
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        header('Content-Type: text/html; charset=utf-8');
-        return $rows;
-    } catch (Exception $e) {
-       return false;
-    }
-}

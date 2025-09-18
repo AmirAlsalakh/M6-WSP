@@ -5,36 +5,35 @@ class UserAuth
 {
     public function login($username, $password)
     {
-        if (isset($_POST['password'], $_POST['username'])) {
-            $username = filter_input(INPUT_POST, 'username', FILTER_UNSAFE_RAW);
-            $password = $_POST['password'];
 
-            $db = dbConnect();
+        $username = filter_var($username, FILTER_UNSAFE_RAW);
+        $password = $password;
 
-            $stmt = $db->prepare("SELECT * FROM user WHERE username = :user");
-            $stmt->bindValue(":user", $username);
+        $db = dbConnect();
 
-            $stmt->execute();
+        $stmt = $db->prepare("SELECT * FROM user WHERE username = :user");
+        $stmt->bindValue(":user", $username);
 
-            if ($stmt->rowCount() == 1) {
+        $stmt->execute();
 
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($stmt->rowCount() == 1) {
 
-                if (password_verify($password, $user['password'])) {
-                    session_regenerate_id(true);
-                    $_SESSION['inloggad'] = true;
-                    $_SESSION['uid'] = $user['uid'];
-                    $_SESSION['username'] = $user['username'];
-                    $_SESSION['name'] = $user['surname'] . " " . $user['firstname'];
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    header('Location: index.php');
-                    exit();
-                } else {
-                    header('Location: index.php');
-                }
+            if (password_verify($password, $user['password'])) {
+                session_regenerate_id(true);
+                $_SESSION['inloggad'] = true;
+                $_SESSION['uid'] = $user['uid'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['name'] = $user['surname'] . " " . $user['firstname'];
+
+                return true;
+                exit();
             } else {
-                header('Location: index.php');
+                return false;
             }
+        } else {
+            return false;
         }
     }
 }

@@ -14,7 +14,7 @@ include('world/inc/dbFunctions.php');
 <body>
     <p>Hej</p>
     <?php
-    $sqlkod = "SELECT Name, Population FROM `city` WHERE Name LIKE 'Z%' ORDER BY Name";
+    $sqlkod = "SELECT Name, Population FROM `city` WHERE Name LIKE 'Z%' ORDER BY Name ASC";
     $db = dbConnect();
     $posts = postAll($db, $sqlkod);
 

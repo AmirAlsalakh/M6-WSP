@@ -10,6 +10,7 @@
 <body>
     <form method="post" action="checkAllComments.php">
         <label>Skriv ut alla kommentar:</label><br>
+        <input type="hidden" name = a value = 2323>
         <input type="submit" value="Sök">
     </form>
 

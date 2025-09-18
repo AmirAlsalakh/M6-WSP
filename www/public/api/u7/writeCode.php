@@ -8,7 +8,7 @@
 <body>
     <form action="apiThirdChallenge.php" method="post">
         <label for="Kod">Koden på landet:</label>
-        <input type="text" id="Kod" name="Kod" required>
+        <input type="text" id="kod" name="kod" required>
         <input type="submit" value="Submit">
     </form>
 </body>

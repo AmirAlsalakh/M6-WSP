@@ -25,4 +25,4 @@ function getUserFromUid($db, $uid)
     } else {
         return false;
     }
-}
+} //DONE IN OOP

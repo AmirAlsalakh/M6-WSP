@@ -1,10 +1,10 @@
 <?php include('world/inc/dbFunctions.php');
 
-if (isset($_POST['submit'])) {
-    $submit = filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_SPECIAL_CHARS);
-    $sqlkod = "SELECT Name, Population FROM `city` WHERE Name LIKE :s ORDER BY Name";
+if (isset($_POST['city'])) {
+    $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_SPECIAL_CHARS);
+    $sqlkod = "SELECT Name, Population FROM `city` WHERE Name LIKE :s ORDER BY Name ASC";
     $db = dbConnect();
-    $posts = postAll($db, $sqlkod, $submit);
+    $posts = postAll($db, $sqlkod, $city);
 }
 
 ?>
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 
 <body>
     <form method="post">
-        <input type="text" name="submit" placeholder="Sök stad" required>
+        <input type="text" name="city" placeholder="Sök stad" required>
         <input type="submit" value="Sök">
     </form>
 

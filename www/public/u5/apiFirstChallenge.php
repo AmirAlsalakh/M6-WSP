@@ -1,26 +1,10 @@
-<?php include('world/inc/dbFunctions.php');
-?>
+<?php 
+include('world/inc/dbFunctions.php');
 
-<!DOCTYPE html>
-<html lang="en">
+$sqlkod = "SELECT Name, Population, Code FROM `country` ORDER BY Name";
+$db = dbConnect();
+$posts = postAll($db, $sqlkod);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+header('Content-Type: application/json');
 
-<body>
-    <p>Hej</p>
-    <?php
-    $sqlkod = "SELECT Name, Population, Code FROM `country` ORDER BY Name";
-    $db = dbConnect();
-    $posts = postAll($db, $sqlkod);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($posts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    ?>
-</body>
-
-</html>
+echo json_encode($posts, JSON_UNESCAPED_UNICODE ); // | JSON_PRETTY_PRINT
