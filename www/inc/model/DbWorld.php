@@ -31,16 +31,16 @@ class DbWorld
 
     function getCountryByText($name)
     {
-        $sqlkod = "SELECT Name, Population, Code FROM `country` Where Name LIKE :name ORDER BY Name";
+        $sqlkod = "SELECT Name, Population, `Code` FROM `country` Where Name LIKE :name ORDER BY Name";
         $stmt = $this->db->prepare($sqlkod);
 
         $stmt->bindValue(':name', $name . '%');
 
         $stmt->execute();
 
-        $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $countries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $posts;
+        return $countries;
     }
 
     function codeCountry($code)
@@ -50,14 +50,13 @@ class DbWorld
         $stmt->bindValue(':code', $code);
         $stmt->execute();
 
-        $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        $posts = [];
         if ($stmt->rowCount() > 0) {
+            $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             return $posts;
         } else {
-            return false;
+            return $posts;
         }
     }
-
-    
 }

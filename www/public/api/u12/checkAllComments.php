@@ -6,7 +6,6 @@ if (!empty($_POST)) {
     $posts = $DbEgyTalk->getAllPostAndCommentsAndDateOrderedFromUid();
 
     if ($posts) {
-        echo json_encode("posts: ");
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode($posts, JSON_UNESCAPED_UNICODE);
     } else {

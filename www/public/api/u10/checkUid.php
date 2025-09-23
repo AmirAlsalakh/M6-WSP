@@ -2,7 +2,7 @@
 if (!empty($_POST)) {
     include $_SERVER['DOCUMENT_ROOT'] . '/../inc/model/DbEgyTalk.php';
 
-    if (isset($_POST["uid"])) {
+    if (isset($_POST["uid"]) && !empty($_POST["uid"])) {
 
         $uid = $_POST["uid"];
 
@@ -12,7 +12,7 @@ if (!empty($_POST)) {
         $posts = $DbEgyTalk->getPostAndCommentsFromUid($uid);
 
         if ($posts) {
-            echo json_encode("posts: ");
+            //echo json_encode("posts: ");
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode($posts, JSON_UNESCAPED_UNICODE);
         } else {
