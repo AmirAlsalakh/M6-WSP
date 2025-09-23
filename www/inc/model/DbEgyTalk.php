@@ -9,6 +9,8 @@
 class DbEgyTalk
 {
 
+    private $db;
+
     public function __construct()
     {
         // Definierar konstanter med användarinformation.
